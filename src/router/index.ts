@@ -1,4 +1,4 @@
-import {Navigate, useRoutes} from 'react-router-dom';
+import {useRoutes} from 'react-router-dom';
 import {MetaRule, onRouteBeforeRule, RouteObjectRule} from './guard';
 
 interface MetaRuleDefine extends MetaRule {
@@ -12,21 +12,21 @@ interface RouterRule extends RouteObjectRule {
 export const routes: RouterRule[] = [
   {
     path: '/*',
-    element: <Navigate to="/test" replace></Navigate>
+    redirect: '/home'
   },
   {
     path: '/login',
     meta: {
       auth: false,
-      title: '登录页'
+      title: 'Login'
     },
     page: () => import('../views/login')
   },
   {
-    path: '/test',
+    path: '/home',
     meta: {
       auth: true,
-      title: '主页'
+      title: 'Home Page'
     },
     page: () => import('../views/home'),
     children: [

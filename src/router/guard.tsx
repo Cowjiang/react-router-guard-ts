@@ -13,12 +13,14 @@ interface MetaRule {
 }
 
 // 路由规则
-interface RouteObjectRule extends RouteObject {
+// Deprecated: extends RouteObject
+interface RouteObjectRule {
   children?: RouteObjectRule[], //子路由
   page?: FunctionRule, //route导入页面的对象，使用示例：() => import('home.tsx')
   path?: string, //页面路径
-  redirect?: string, //重定向地址 ，常用于设置页面默认地址
+  redirect?: string, //重定向地址
   meta?: MetaRule, //页面参数
+  element?: JSX.Element //路由组件
 }
 
 interface onRouteBeforeRule<meta = MetaRule, to = string> {
